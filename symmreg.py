@@ -48,7 +48,7 @@ def xfunc(temp,wh,ws,wv,press,x):
     set in each NPT simulation.
     
     w = wh - (temp*ws) + (P*wv)
-    xfunc = np.exp( -2*w/RT * (1-2x) ) - x/(1-x)
+    xfunc = np.exp( -1*w/RT * (1-2x) ) - x/(1-x)
 
     Example calculation:
     -------------------
@@ -76,9 +76,9 @@ def xfunc(temp,wh,ws,wv,press,x):
 
     """
     R = 8.3143 # ideal gas constant
-
-    w = wh - (temp*ws) + ( (press-60E9) *wv)
-    xfunc = np.exp( (-2*w/(R*temp)) * (1 - (2*x)) ) - x/(1 - x)
+    p_ref = 60E9 # reference pressure
+    w = wh - (temp*ws) + ( (press-p_ref) *wv)
+    xfunc = np.exp( (-1*w/(R*temp)) * (1 - (2*x)) ) - x/(1 - x)
     
     return xfunc
 
